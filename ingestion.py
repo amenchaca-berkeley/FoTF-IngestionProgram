@@ -3,19 +3,16 @@ import pandas as pd
 import geopandas as gpd
 import psycopg2 as pg4
 import helpers
+import UserDefined as ud
 
 
-# Define Used Directories
-data_collection_folder = "/Users/alanmenchaca/Downloads/DataDrop/"
-data_ingested_folder = f"{data_collection_folder}Ingested/"
-data_unusable_folder = f"{data_collection_folder}Unusable/"
 
 # Find new files that need to be added to database ## NOT ACTUALLY MADE YET
-new_file_names = helpers.list_of_files_in_folder(data_collection_folder)
+new_file_names = helpers.list_of_files_in_folder(ud.data_collection_folder)
 to_ingest_files = [file for file in new_file_names]
 
 ### MacOS creates hidden metadata file for folders sometimes ###
-_ignore_ = f"{data_collection_folder}.DS_Store"
+_ignore_ = f"{ud.data_collection_folder}.DS_Store"
 if _ignore_ in to_ingest_files: to_ingest_files.remove(_ignore_)
 
 # Ends program if no new files need to be added
@@ -57,13 +54,13 @@ for filepath in to_ingest_files:
 
         # Commit changes to database
         conn.commit()
-        helpers.move_file(filepath, data_ingested_folder)
         print(f"Ingested: {filepath.split('/')[-1]}")
+        helpers.move_file(filepath, ud.data_ingested_folder)
 
 
     except Exception as e:
         print(f"Error: {e}")
-        helpers.move_file(filepath, data_unusable_folder)
+        helpers.move_file(filepath, ud.data_unusable_folder)
     print("--------------------")
 
 

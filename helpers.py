@@ -2,22 +2,13 @@ import pandas as pd
 import geopandas as gpd
 import os
 import shutil
+import UserDefined as ud
 
 
-table_to_keywords = { # find_destination_table() should work EVEN if number of tables changes, or if new key words are added
-    "VPHF_Reports": ["VPHF"], # VPHF_#9.txt
-    "VSECOM_Reports": ["VSECOM"],  # VSECOM_#9.txt
-    "Soil_Tests": ["SoilTest"], # CURCSoilTestResults2018-2024.csv
-    "Weather_Reports": ["Hourly Data for Freeville"], # B1_Hourly Data for Freeville, NY - [id=fre newa, lat=42.4975, lon=-76.2998].csv
-    "Crop_Management": ["CropManagement"], # A1_CropManagementFotF_2023.xlsx
-    "Yield_Reports": ["clean_yield"], # CURC_silage_clean_yield_2017-2023.csv
-    "Hexagon_Grids": ["FieldsHexgrids"], # CURCFieldsHexgrids.geojson
-    "Field_Grids": ["boundary"] # CURC22_boundary.shp
-}
 
 def find_destination_table(filename): # File Type -> Database Table
-    for table in table_to_keywords.keys(): # Table_Name
-        for keyword in table_to_keywords[table]:
+    for table in ud.table_to_keywords.keys(): # Table_Name
+        for keyword in ud.table_to_keywords[table]:
             if keyword in filename:
                 return table
     raise Exception("No Database Destination.")
@@ -30,18 +21,13 @@ def read_file(filepath, file_type, destination_table):
     elif file_type == "csv":
         if destination_table == "Yield_Reports":
             df = pd.read_csv(filepath, dtype={"Field": "string"})
+        else:
+            df = pd.read_csv(filepath, index_col=None)
     elif file_type == "xlsx":
         df = pd.read_excel(filepath)
         df = df.replace({pd.NaT: None})
-    else: # Ex. file_type == "geojson", "shp", "pdf"
-        try:
-            df = pd.read_table(filepath)
-        except Exception as e:
-            print("REREADING...")
-            try:
-                df = gpd.read_file(filepath, dtype = {"hexagon": "int"})
-            except Exception as e:
-                raise e
+    else: # Last resort
+        df = pd.read_table(filepath)
     
     assert df is not None, "Failed File -> DataFrame Conversion"
     print(f"Sending To: {destination_table} TABLE...")
