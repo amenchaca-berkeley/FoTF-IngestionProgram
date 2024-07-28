@@ -3,13 +3,14 @@ Change Parameters for Program as Needed.
 '''
 
 
+
 # Define Used Directories & Subdirectories
 data_collection_folder = "/Users/alanmenchaca/Downloads/DataDrop/"
 data_ingested_folder = f"{data_collection_folder}Ingested/"
 data_unusable_folder = f"{data_collection_folder}Unusable/"
 
-
- # find_destination_table() should work EVEN if number of tables changes, or if new key words are added
+# Database Table : keywords in data files
+# find_destination_table() should work EVEN if number of tables changes, or if new key words are added
 table_to_keywords = {
     "VPHF_Reports": ["VPHF"], # VPHF_#9.txt
     "VSECOM_Reports": ["VSECOM"],  # VSECOM_#9.txt

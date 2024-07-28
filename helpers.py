@@ -43,8 +43,6 @@ def read_and_address_file(filepath):
 
     return read_file(filepath, file_type, destination_table), destination_table
 
-
-
 def list_of_files_in_folder(folder_path):
     return [f"{folder_path}{file}" for file in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, file))]
 
@@ -57,4 +55,16 @@ def move_file(filepath, destination_folder_path):
         print(f"{file_name} moved to /{destination_folder_name}")
     else:
         print(f"No Such Directory: '/{destination_folder_name}'")  
+
+
+''' UNIMPLEMENTED '''
+# Copy files from Box onto local machine
+def copy_remote_files(destination):
+    print("Retrieving files from Box...")
+
+
+    print("Retrieved remote files!")
+    return None
+
+
 
