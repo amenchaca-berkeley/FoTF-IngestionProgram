@@ -2,8 +2,6 @@
 Change Parameters for Program as Needed.
 '''
 
-
-
 # Define Used Directories & Subdirectories
 data_collection_folder = "/Users/alanmenchaca/Downloads/DataDrop/"
 data_ingested_folder = f"{data_collection_folder}Ingested/"

@@ -59,17 +59,3 @@ def move_file(filepath, destination_folder_path):
 
 
 
-
-
-
-''' UNIMPLEMENTED '''
-# Copy files from Box onto local machine
-def get_remote_files(destination):
-    print("Retrieving files from Box...")
-
-
-    print("Retrieved remote files!")
-    return None
-
-
-
