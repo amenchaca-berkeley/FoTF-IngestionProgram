@@ -8,7 +8,7 @@ import userDefined as ud
 
 
 # Find new files that need to be added to database ## NOT ACTUALLY MADE YET
-helpers.copy_remote_files(ud.data_collection_folder)
+helpers.get_remote_files(ud.data_collection_folder)
 new_file_names = helpers.list_of_files_in_folder(ud.data_collection_folder)
 to_ingest_files = [file for file in new_file_names]
 
