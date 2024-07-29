@@ -9,6 +9,9 @@ data_collection_folder = "/Users/alanmenchaca/Downloads/DataDrop/"
 data_ingested_folder = f"{data_collection_folder}Ingested/"
 data_unusable_folder = f"{data_collection_folder}Unusable/"
 
+# Ignore these files
+_ignore_ = [".DS_Store"] ### MacOS creates hidden metadata file for folders sometimes ###
+
 # Database Table : keywords in corresponding data files
 # find_destination_table() should work EVEN if number of tables changes, or if new key words are added
 table_to_keywords = {

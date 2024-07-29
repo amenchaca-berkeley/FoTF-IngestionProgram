@@ -1,20 +1,13 @@
 # Error: Missing optional dependency 'openpyxl'.  Use pip or conda to install openpyxl.
+import userDefined as ud
 import pandas as pd
-import geopandas as gpd
 import psycopg2 as pg4
 import helpers
-import userDefined as ud
-
-
 
 # Find new files that need to be added to database ## NOT ACTUALLY MADE YET
 helpers.get_remote_files(ud.data_collection_folder)
 new_file_names = helpers.list_of_files_in_folder(ud.data_collection_folder)
-to_ingest_files = [file for file in new_file_names]
-
-### MacOS creates hidden metadata file for folders sometimes ###
-_ignore_ = f"{ud.data_collection_folder}.DS_Store"
-if _ignore_ in to_ingest_files: to_ingest_files.remove(_ignore_)
+to_ingest_files = [file for file in new_file_names if file.split('/')[-1] not in ud._ignore_]
 
 # Ends program if no new files need to be added
 if not to_ingest_files: 

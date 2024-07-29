@@ -1,10 +1,7 @@
+import userDefined as ud
 import pandas as pd
-import geopandas as gpd
 import os
 import shutil
-import userDefined as ud
-
-
 
 def find_destination_table(filename): # File Type -> Database Table
     for table in ud.table_to_keywords.keys(): # Table_Name
@@ -51,10 +48,18 @@ def move_file(filepath, destination_folder_path):
     destination_folder_name = destination_folder_path.split('/')[-2]
 
     if os.path.isdir(destination_folder_path):
+        if os.path.isdir(f"{destination_folder_path}{file_name}"): 
+            print("FILE ALREADY EXISTS IN DESTINATION DIRECTORY!")
+            return
         shutil.move(filepath, destination_folder_path)
         print(f"{file_name} moved to /{destination_folder_name}")
     else:
         print(f"No Such Directory: '/{destination_folder_name}'")  
+    
+
+
+
+
 
 
 ''' UNIMPLEMENTED '''
