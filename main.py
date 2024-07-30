@@ -9,9 +9,11 @@ except Exception as e:
     print(e)
     print("Failed to run sync.main()!")
 
-# Run ingestion script
+# Ingest local files into postgresql database
 try:
     ingestion.main()
 except Exception as e:
     print(e)
     print("Failed to run ingestion.main()!")
+
+
