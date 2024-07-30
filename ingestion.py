@@ -16,11 +16,11 @@ def main():
 
     # Database connection established
     conn = pg4.connect(
-        dbname="postgres",
-        user="postgres",
-        password="0000",
-        host="localhost",
-        port="5432"
+        dbname=ud.dbname,
+        user=ud.user,
+        password=ud.password,
+        host=ud.host,
+        port=ud.port
     )
     cursor = conn.cursor()
     print("....................")

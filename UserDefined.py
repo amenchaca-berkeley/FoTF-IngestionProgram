@@ -23,6 +23,13 @@ table_to_keywords = {
     "Field_Grids": ["boundary"] # CURC22_boundary.shp
 }
 
+# PostgreSQL Database Credentials
+dbname = "postgres"
+user = "postgres"
+password = "0000"
+host = "localhost"
+port = "5432"
+
 
 
 
